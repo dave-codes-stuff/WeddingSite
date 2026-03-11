@@ -1,5 +1,4 @@
 ---
-import '../styles/global.css'
 
 ---
 
@@ -21,3 +20,28 @@ import '../styles/global.css'
 		</div>
 	</body>
 </html>
+
+<style>
+
+:root {
+    --dark-blue-color: #0f1534;
+    --light-blue-color: #345d87;
+    --off-white-color: #faf9f9;
+}
+
+body {
+    margin: 0;
+    background-color: var(--off-white-color);
+}
+
+#main-header {
+    align-items: center;     /* Centers vertically */
+    background-color: var(--dark-blue-color);
+    color: var(--off-white-color);
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    justify-content: center; /* Centers horizontally */
+}
+
+</style>
