@@ -4,6 +4,7 @@ import { Font } from "astro:assets";
 import IMG_gardenBackground from '../images/garden-background.webp';
 const gardenBackground = `url("${IMG_gardenBackground.src}")`;
 
+
 ---
 
 <html lang="en">
@@ -15,7 +16,8 @@ const gardenBackground = `url("${IMG_gardenBackground.src}")`;
 		<link rel="icon" type="image/png" sizes="16x16" href="public/favicon/favicon-16x16.png">
 		<link rel="manifest" href="public/favicon/site.webmanifest">
 		<meta name="viewport" content="width=device-width" />
-		<Font cssVariable="--font-gloock" />		
+		<Font cssVariable="--font-gloock" />
+		<Font cssVariable="--font-heebo"	
 		<title>Sarah and David's Wedding | July 11, 2026 @ 5 PM</title>
 	</head>
 	<body>
@@ -29,6 +31,10 @@ const gardenBackground = `url("${IMG_gardenBackground.src}")`;
 				<h2>DAVID JEFFREY ADAMS</h2>
 			</div>
 		</div>
+		<div id="welcome-section">
+			<h2>Saturday July 11th, 2026</h2>
+			<h2>5 pm</h2>
+		</div>
 	</body>
 </html>
 
@@ -38,12 +44,13 @@ const gardenBackground = `url("${IMG_gardenBackground.src}")`;
     --dark-blue-color: #0f1534;
     --light-blue-color: #345d87;
     --off-white-color: #faf9f9;
+	--blue-green-color: #81c7a9;
 
 }
 
 body {
     margin: 0;
-    background-color: var(--off-white-color);
+    background-color: var(--blue-green-color);
 }
 
 #main-header {
@@ -76,6 +83,15 @@ body {
 	margin-top: 0px;
 	margin-bottom: 40px;
 }
+
+
+#welcome-section {
+	align-items: center;
+	padding-top: 2rem;
+	text-align: center;
+	font-family: var(--font-heebo);
+}
+
 
 @media screen and (max-width: 800px) {
   h2, h3 {
