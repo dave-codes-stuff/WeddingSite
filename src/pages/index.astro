@@ -4,6 +4,7 @@ import { Font } from "astro:assets";
 import IMG_gardenBackground from '../images/garden-background.webp';
 const gardenBackground = `url("${IMG_gardenBackground.src}")`;
 
+import RSVP from "../components/rsvp.astro"
 
 ---
 
@@ -16,8 +17,8 @@ const gardenBackground = `url("${IMG_gardenBackground.src}")`;
 		<link rel="icon" type="image/png" sizes="16x16" href="public/favicon/favicon-16x16.png">
 		<link rel="manifest" href="public/favicon/site.webmanifest">
 		<meta name="viewport" content="width=device-width" />
-		<Font cssVariable="--font-gloock" />
-		<Font cssVariable="--font-heebo"	
+		<Font cssVariable="--font-header" />
+		<Font cssVariable="--font-primary"	
 		<title>Sarah and David's Wedding | July 11, 2026 @ 5 PM</title>
 	</head>
 	<body>
@@ -35,6 +36,7 @@ const gardenBackground = `url("${IMG_gardenBackground.src}")`;
 			<h2>Saturday July 11th, 2026</h2>
 			<h2>5 pm</h2>
 		</div>
+		<RSVP />
 	</body>
 </html>
 
@@ -62,7 +64,7 @@ body {
     color: var(--dark-blue-color);
     display: flex;
     flex-direction: column;
-	font-family: var(--font-gloock);
+	font-family: var(--font-header);
 	font-size: 1.3rem;
 	letter-spacing: 0.6rem;
 	height: 20rem;
@@ -89,7 +91,7 @@ body {
 	align-items: center;
 	padding-top: 2rem;
 	text-align: center;
-	font-family: var(--font-heebo);
+	font-family: var(--font-primary);
 }
 
 

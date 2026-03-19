@@ -6,12 +6,12 @@ export default defineConfig({
   fonts: [{
     provider: fontProviders.google(),
     name: "Gloock",
-    cssVariable: "--font-gloock",
+    cssVariable: "--font-header",
   },
   {
     provider: fontProviders.google(),
     name: "Heebo",
-    cssVariable: "--font-heebo",
+    cssVariable: "--font-primary",
   }
 ]
 });
