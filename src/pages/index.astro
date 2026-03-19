@@ -1,4 +1,8 @@
 ---
+import { Font } from "astro:assets";
+
+import IMG_gardenBackground from '../images/garden-background.webp';
+const gardenBackground = `url("${IMG_gardenBackground.src}")`;
 
 ---
 
@@ -11,23 +15,30 @@
 		<link rel="icon" type="image/png" sizes="16x16" href="public/favicon/favicon-16x16.png">
 		<link rel="manifest" href="public/favicon/site.webmanifest">
 		<meta name="viewport" content="width=device-width" />
-		<title>Sarah and David's Wedding</title>
+		<Font cssVariable="--font-gloock" />		
+		<title>Sarah and David's Wedding | July 11, 2026 @ 5 PM</title>
 	</head>
 	<body>
-		<div id="main-header">
-			<h2>SARAH ELIZABETH PR&Egrave;OT COVINGTON</h2>
+		<div id="main-header" >
+			<div id="sarah-main-name">
+				<h2>SARAH ELIZABETH</h2>
+				<h2>PR&Egrave;OT COVINGTON</h2>
+			</div>
 			<h3>&</h3>
-			<h2>DAVID JEFFREY ADAMS</h2>
+			<div id="david-main-name">
+				<h2>DAVID JEFFREY ADAMS</h2>
+			</div>
 		</div>
 	</body>
 </html>
 
-<style>
+<style define:vars={{ gardenBackground }}>
 
 :root {
     --dark-blue-color: #0f1534;
     --light-blue-color: #345d87;
     --off-white-color: #faf9f9;
+
 }
 
 body {
@@ -38,11 +49,41 @@ body {
 #main-header {
     align-items: center;     /* Centers vertically */
     background-color: var(--dark-blue-color);
-    color: var(--off-white-color);
+	background-image: var(--gardenBackground);
+	background-size: cover;
+	background-position: center;
+    color: var(--dark-blue-color);
     display: flex;
     flex-direction: column;
-    height: 300px;
+	font-family: var(--font-gloock);
+	font-size: 1.3rem;
+	letter-spacing: 0.6rem;
+	height: 20rem;
     justify-content: center; /* Centers horizontally */
+	
+}
+
+#sarah-main-name h2:first-of-type {
+	margin-bottom: 0px;
+	margin-top: 40px;
+}
+
+#sarah-main-name h2:last-of-type {
+	margin-bottom: 0px;
+}
+
+#david-main-name h2 {
+	margin-top: 0px;
+	margin-bottom: 40px;
+}
+
+@media screen and (max-width: 800px) {
+  h2, h3 {
+    font-size: 1.3rem; /* Adjust size for mobile */
+    line-height: 1.4;
+    /* padding: 0 20px; Prevents text from hitting screen edges */
+  }
+
 }
 
 </style>
