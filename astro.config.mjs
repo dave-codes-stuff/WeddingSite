@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
 
+import node from "@astrojs/node";
+
 // https://astro.build/config
 export default defineConfig({
   fonts: [{
@@ -13,5 +15,9 @@ export default defineConfig({
     name: "Heebo",
     cssVariable: "--font-primary",
   }
-]
+],
+  output: "server",
+  adapter: node({
+    mode: "standalone"
+  })
 });
