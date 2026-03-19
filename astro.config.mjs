@@ -5,6 +5,10 @@ import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
+  output: "server",
+  adapter: node({
+    mode: "standalone"
+  }),
   fonts: [{
     provider: fontProviders.google(),
     name: "Gloock",
@@ -15,9 +19,5 @@ export default defineConfig({
     name: "Heebo",
     cssVariable: "--font-primary",
   }
-],
-  output: "server",
-  adapter: node({
-    mode: "standalone"
-  })
+]
 });

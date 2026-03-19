@@ -1,7 +1,7 @@
 ---
 import { Font } from "astro:assets";
 
-import IMG_gardenBackground from '../images/garden-background.webp';
+import IMG_gardenBackground from '../images/garden-background-75-opacity.webp';
 const gardenBackground = `url("${IMG_gardenBackground.src}")`;
 
 import RSVP from "../components/rsvp.astro"
@@ -33,10 +33,63 @@ import RSVP from "../components/rsvp.astro"
 			</div>
 		</div>
 		<div id="welcome-section">
-			<h2>Saturday July 11th, 2026</h2>
-			<h2>5 pm</h2>
+			<h2>Saturday July 11th, 2026 @ 5PM</h2>
+			<h3>Church of The Holy Communion</h2>
+			<h4>218 Ashley Ave</h2>
+			<h4>Charleston, SC 29403</h2>
 		</div>
-		<RSVP />
+		<div id="story-section">
+			<h2 class="section-header">Our Story</h2>
+			<p> 
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed 
+				sagittis ex quis ligula ornare, vitae dignissim lacus elementum.
+				Curabitur luctus est eros. Donec faucibus, elit nec sollicitudin
+				sodales, est nunc suscipit nulla, sit amet egestas eros arcu 
+				sit amet nisi. Phasellus at ligula eget ligula dictum tempus 
+				ac vitae lectus. Nulla ultrices ante et est tempus hendrerit. 
+				Integer ac odio at arcu luctus finibus. Nulla nec ipsum diam. 
+				Cras viverra elit leo, sit amet tincidunt enim vehicula non. 
+				In accumsan, sem bibendum finibus aliquam, nibh purus consequat 
+				ipsum, et posuere sem tellus et eros. Sed id gravida nisl. Duis
+				dapibus purus a semper efficitur. Nulla ut eros vel sapien 
+				facilisis lacinia et vitae nisi. Mauris commodo, odio nec 
+				porta laoreet, arcu lectus eleifend sapien, sodales aliquam ex 
+				ipsum eu justo. Morbi ullamcorper porttitor nisl, eu cursus 
+				urna tempus faucibus.
+			</p>
+			<p>
+				Mauris ac pellentesque purus. Aenean a accumsan lorem, vitae 
+				porttitor sapien. In vel finibus leo, et consectetur ex. Morbi 
+				interdum porta tempor. Maecenas diam nisl, scelerisque ut nunc 
+				sit amet, semper posuere massa. Aliquam ac maximus ex. 
+				Curabitur quis felis justo. Pellentesque tempus neque a ipsum
+				malesuada imperdiet. Nunc cursus eget justo vitae vestibulum. 
+				Nam porta augue in ipsum maximus ornare. Cras sed lacus turpis. 
+				Aenean blandit lacus sit amet aliquet consectetur. Mauris eu 
+				diam turpis. Aliquam quis semper eros.
+			</p>
+			<p>
+				Quisque dignissim vel felis eget accumsan. Sed tincidunt ac 
+				lectus at dictum. Aenean risus urna, finibus ac pulvinar vitae, 
+				porta a risus. Nunc sem leo, egestas vitae nisi nec, eleifend 
+				rhoncus est. Duis ultrices purus a volutpat hendrerit. In hac 
+				habitasse platea dictumst. Aliquam erat volutpat. Donec tempus
+				euismod tempus. Integer non diam vitae magna faucibus vulputate 
+				id non quam. Mauris ut neque eget ante rutrum pulvinar eget 
+				vitae mi. Integer sodales massa neque, ut elementum eros
+				elementum ac. Fusce nulla nunc, consectetur ut pulvinar et, 
+				efficitur vitae orci. Nunc molestie vehicula ipsum vitae tempus. 
+			</p>
+		</div>
+		<div id="rsvp-section">
+			<h2 class="section-header">RSVP</h2>
+			<RSVP />
+		</div>
+
+		<!-- <div id="footer">
+			Footer
+		</div> -->
+		
 	</body>
 </html>
 
@@ -45,30 +98,45 @@ import RSVP from "../components/rsvp.astro"
 :root {
     --dark-blue-color: #0f1534;
     --light-blue-color: #345d87;
-    --off-white-color: #faf9f9;
+    --off-white-color: #ECECEC;
 	--blue-green-color: #81c7a9;
+	--brown-color: #625824;
 
 }
 
 body {
     margin: 0;
     background-color: var(--blue-green-color);
+	background-image: var(--gardenBackground);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	 max-width: 1200px; /* Or a width in % or ch */
+  	margin: 0 auto;    /* Centers the section */
+}
+
+p {
+	padding: 0px 100px 0px 100px;
 }
 
 #main-header {
     align-items: center;     /* Centers vertically */
     background-color: var(--dark-blue-color);
-	background-image: var(--gardenBackground);
+	/* background-image: var(--gardenBackground); */
 	background-size: cover;
 	background-position: center;
-    color: var(--dark-blue-color);
+    color: white;
     display: flex;
     flex-direction: column;
 	font-family: var(--font-header);
-	font-size: 1.3rem;
-	letter-spacing: 0.6rem;
-	height: 20rem;
+	font-size: 1.2rem;
+	letter-spacing: 0.4rem;
+	height: 22rem;
     justify-content: center; /* Centers horizontally */
+	border-bottom-left-radius: 50% 20%;
+	border-bottom-right-radius: 50% 20%;
+	border-bottom: 30px groove var(--blue-green-color);
+
 	
 }
 
@@ -94,14 +162,39 @@ body {
 	font-family: var(--font-primary);
 }
 
+#rsvp-section {
+	
+}
 
-@media screen and (max-width: 800px) {
+.section-header {
+	text-align:left;
+	font-size: 28px;
+	margin: 0px;
+	margin-left: 100px;
+}
+
+#footer {
+	background-color: var(--dark-blue-color);
+	height: 150px;
+	border-top: 5px groove var(--blue-green-color);
+}
+    
+
+
+@media screen and (max-width: 600px) {
   h2, h3 {
     font-size: 1.3rem; /* Adjust size for mobile */
     line-height: 1.4;
     /* padding: 0 20px; Prevents text from hitting screen edges */
   }
+  p{
+  padding: 0px 40px 0px 40px;
 
+  }
+  .section-header {
+	margin: 0px;
+	text-align: center;
+  }
 }
 
 </style>

@@ -3,8 +3,9 @@
 ---
 
 <div class="rsvp-container">
-  <h2>Will you be attending?</h2>
-  <form id="rsvp-form">
+  
+  <form id="rsvp-form" method="POST">
+    <h2>Will you be attending?</h2>
     <label>
       Name:
       <input type="text" name="name" required />
@@ -14,7 +15,7 @@
       Will you attend?
       <select name="attendance" required>
         <option value="yes">Yes, I'll be there!</option>
-        <option value="no">Sadly, I can't make it</option>
+        <option value="no">Sorry, I can't make it.</option>
       </select>
     </label>
 
@@ -26,8 +27,11 @@
     <button type="submit">Send RSVP</button>
   </form>
   
-  <p id="response-msg" style="display: none;">Thanks for your RSVP!</p>
+  <p id="response-msg">Thanks!</p>
 </div>
+
+
+
 
 <script>
   const form = document.getElementById('rsvp-form') as HTMLFormElement;
@@ -36,10 +40,12 @@
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
+    //const data = Object.fromEntries(formData);
 
-    // Replace with your API endpoint or logic
-    console.log("Form Data Submitted:", data);
+    fetch("api/process-rsvp", { 
+        method: 'POST',
+        body: formData
+    });
 
     form.style.display = 'none';
     if (msg) msg.style.display = 'block';
@@ -50,13 +56,24 @@
 
 .rsvp-container {
     max-width: 400px;
-    margin: 2rem auto;
-    padding: 1rem;
-    border: 1px solid #ccc;
+    height: 400px;
+    margin: .75rem auto 2rem auto;
+    padding: 1.2rem;
+    border: 3px solid var(--light-blue-color);
     border-radius: 8px;
     background-color: var(--dark-blue-color);
     color: var(--off-white-color);
     font-family: var(--font-primary);
+}
+
+#response-msg {
+    margin-top: 180px;
+    text-align: center;
+    display: none;
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    font-weight: 700;
+
 }
   
 form { 
@@ -76,8 +93,22 @@ input, select, textarea {
     margin-top: 0.75rem; 
 }
 
+select {
+    cursor: pointer;
+}
+
 h2 {
     text-align: center;
+    margin-bottom: 0%;
+}
+
+button {
+    padding: 12px;
+    margin: 5px 10px auto 10px;
+    background-color: var(--blue-green-color);
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
 }
 
 </style>
