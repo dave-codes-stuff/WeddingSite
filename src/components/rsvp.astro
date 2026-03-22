@@ -39,13 +39,13 @@
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    // const formData = new FormData(form);
-    // //const data = Object.fromEntries(formData);
+    const formData = new FormData(form);
+    //const data = Object.fromEntries(formData);
 
-    // fetch("api/process-rsvp", { 
-    //     method: 'POST',
-    //     body: formData
-    // });
+    fetch("/", { 
+        method: 'POST',
+        body: formData
+    });
 
     form.style.display = 'none';
     if (msg) msg.style.display = 'block';
