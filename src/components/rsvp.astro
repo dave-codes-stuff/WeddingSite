@@ -6,22 +6,27 @@
   
   <form id="rsvp-form" action="POST" name="RSVP Form" data-netlify="true">
     <h2>Will you be attending?</h2>
-    <label>
-      Name:
-      <input type="text" name="name" required />
+    <label for="party">Choose party:
+      <select name="party" id="party-members" size="1" required>
+        <option value="" disabled selected>--Select your party--</option>
+        <option value="Jeff Cockerill">Mr. & Mrs. Jeffrey Cockerill, Zoey</option>
+        <option value="Samuel Covington">Mr. & Mrs. Samuel Covington, Ivor, Juno</option>
+
+      </select>
     </label>
     
     <label>
       Will you attend?
       <select name="attendance" required>
-        <option value="yes">Yes, I'll be there!</option>
-        <option value="no">Sorry, I can't make it.</option>
+        <option value="" disabled selected>--Select an option--</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
       </select>
     </label>
 
     <label>
-      Dietary Restrictions:
-      <textarea name="dietary" placeholder="e.g. Vegan, Gluten-free"></textarea>
+      Dietary Restrictions / Notes:
+      <textarea name="dietary_additional" placeholder="e.g. Vegan, Gluten-free, Some party members won't be attending..." rows="5"></textarea>
     </label>
 
     <button type="submit">Send RSVP</button>
@@ -29,9 +34,6 @@
   
   <p id="response-msg">Thanks!</p>
 </div>
-
-
-
 
 <script>
   const form = document.getElementById('rsvp-form') as HTMLFormElement;
@@ -56,7 +58,7 @@
 
 .rsvp-container {
     max-width: 360px;
-    height: 400px;
+    height: 435px;
     margin: .75rem auto 2rem auto;
     padding: 1.2rem;
     border: 3px solid var(--light-blue-color);
@@ -95,6 +97,11 @@ input, select, textarea {
 
 select {
     cursor: pointer;
+    overflow-wrap: break-word;
+}
+
+option {
+  overflow-wrap: break-word;
 }
 
 h2 {
