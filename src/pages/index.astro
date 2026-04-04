@@ -1,7 +1,10 @@
 ---
 import { Font } from "astro:assets";
+import { Image } from 'astro:assets';
 
 import IMG_gardenBackground from '../images/garden-background.webp';
+import IMG_sarahAndDaveUtah from '../images/sarahanddave_utah.webp';
+
 const gardenBackground = `url("${IMG_gardenBackground.src}")`;
 
 import RSVP from "../components/rsvp.astro"
@@ -18,7 +21,7 @@ import RSVP from "../components/rsvp.astro"
 		<link rel="manifest" href="public/favicon/site.webmanifest">
 		<meta name="viewport" content="width=device-width" />
 		<Font cssVariable="--font-header" />
-		<Font cssVariable="--font-primary"	
+		<Font cssVariable="--font-primary" />
 		<title>Sarah and David's Wedding | July 11, 2026 @ 5 PM</title>
 	</head>
 	<body>
@@ -37,11 +40,13 @@ import RSVP from "../components/rsvp.astro"
 			<h3>Church of The Holy Communion</h2>
 			<h4>218 Ashley Ave</h2>
 			<h4>Charleston, SC 29403</h2>
+			<hr/>
 		</div>
 		<div id="story-section">
 			<h2 class="section-header">Our Story</h2>
+			<Image class="center-image image-style-1" src={IMG_sarahAndDaveUtah} alt="Sarah and David in Utah"/>
 			<p> 
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed 
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed 
 				sagittis ex quis ligula ornare, vitae dignissim lacus elementum.
 				Curabitur luctus est eros. Donec faucibus, elit nec sollicitudin
 				sodales, est nunc suscipit nulla, sit amet egestas eros arcu 
@@ -58,7 +63,7 @@ import RSVP from "../components/rsvp.astro"
 				urna tempus faucibus.
 			</p>
 			<p>
-				Mauris ac pellentesque purus. Aenean a accumsan lorem, vitae 
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mauris ac pellentesque purus. Aenean a accumsan lorem, vitae 
 				porttitor sapien. In vel finibus leo, et consectetur ex. Morbi 
 				interdum porta tempor. Maecenas diam nisl, scelerisque ut nunc 
 				sit amet, semper posuere massa. Aliquam ac maximus ex. 
@@ -69,7 +74,7 @@ import RSVP from "../components/rsvp.astro"
 				diam turpis. Aliquam quis semper eros.
 			</p>
 			<p>
-				Quisque dignissim vel felis eget accumsan. Sed tincidunt ac 
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quisque dignissim vel felis eget accumsan. Sed tincidunt ac 
 				lectus at dictum. Aenean risus urna, finibus ac pulvinar vitae, 
 				porta a risus. Nunc sem leo, egestas vitae nisi nec, eleifend 
 				rhoncus est. Duis ultrices purus a volutpat hendrerit. In hac 
@@ -80,19 +85,40 @@ import RSVP from "../components/rsvp.astro"
 				elementum ac. Fusce nulla nunc, consectetur ut pulvinar et, 
 				efficitur vitae orci. Nunc molestie vehicula ipsum vitae tempus. 
 			</p>
+			<hr/>
+		</div>
+		<div id="family-section">
+			<h2 class="section-header">Our Family</h2>
+			<p> 
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed 
+				sagittis ex quis ligula ornare, vitae dignissim lacus elementum.
+				Curabitur luctus est eros. Donec faucibus, elit nec sollicitudin
+				sodales, est nunc suscipit nulla, sit amet egestas eros arcu 
+				sit amet nisi. Phasellus at ligula eget ligula dictum tempus 
+				ac vitae lectus. Nulla ultrices ante et est tempus hendrerit. 
+				Integer ac odio at arcu luctus finibus. Nulla nec ipsum diam. 
+				Cras viverra elit leo, sit amet tincidunt enim vehicula non. 
+				In accumsan, sem bibendum finibus aliquam, nibh purus consequat 
+				ipsum, et posuere sem tellus et eros. Sed id gravida nisl. Duis
+				dapibus purus a semper efficitur. Nulla ut eros vel sapien 
+				facilisis lacinia et vitae nisi. Mauris commodo, odio nec 
+				porta laoreet, arcu lectus eleifend sapien, sodales aliquam ex 
+				ipsum eu justo. Morbi ullamcorper porttitor nisl, eu cursus 
+				urna tempus faucibus.
+			</p>
+			<hr/>
 		</div>
 		<div id="rsvp-section">
 			<h2 class="section-header">RSVP</h2>
 			<p>
-				Please tell us if you will be attending below. If only some 
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please tell us if you will be attending below. If only some 
 				members of your party will be coming, please let us know in the 
 				notes.
 			</p>
 			<RSVP />
+			<hr/>
 		</div>
-		<!-- <div id="footer">
-			Footer
-		</div> -->
+		
 		
 	</body>
 </html>
@@ -108,19 +134,33 @@ import RSVP from "../components/rsvp.astro"
 
 }
 
+html { 
+  background: var(--gardenBackground) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
+	height: 100%;
     margin: 0;
-    background-color: var(--blue-green-color);
-	background-image: var(--gardenBackground);
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
 	max-width: 1000px; /* Or a width in % or ch */
   	margin: 0 auto;    /* Centers the section */
+	background-color: #ECECEC99;
+
 }
 
 p {
 	padding: 0px 100px 0px 100px;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	font-size: 1.3rem;
+}
+
+hr {
+	display: none;
+border-bottom: 2px solid #606060; /* Darker charcoal option */  
+width: 25%;
 }
 
 #main-header {
@@ -166,23 +206,51 @@ p {
 	font-family: var(--font-primary);
 }
 
+#story-section {
+}
+
 #rsvp-section {
-	
+	padding-bottom: 50px;
+}
+
+
+.center-image {
+    display: block;
+    margin: 0 auto;
+}
+
+.image-style-1 {
+	border-radius: 8px;
+	border: 3px solid var(--light-blue-color);
+	margin-top: 15px;
+	width: 700px;
+	height: auto;
 }
 
 .section-header {
 	text-align:left;
-	font-size: 28px;
+	font-size: 38px;
 	margin: 0px;
 	margin-left: 100px;
+	color: var(--light-blue-color);
 }
 
-#footer {
-	background-color: var(--dark-blue-color);
-	height: 150px;
-	border-top: 5px groove var(--blue-green-color);
+
+@media screen and (max-width: 1000px) {
+
+.section-header {
+	margin-left: 80px;
 }
-    
+.image-style-1 {
+	width: 500px;
+	height: auto;
+}
+
+body {
+	max-width: 90%;
+}
+
+}
 
 
 @media screen and (max-width: 600px) {
@@ -199,6 +267,15 @@ p {
 	margin: 0px;
 	text-align: center;
   }
+  .image-style-1 {
+	width: 400px;
+	height: auto;
+  }
+
+  body {
+	max-width: 95%;
+  }
+
 }
 
 </style>
