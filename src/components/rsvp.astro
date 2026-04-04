@@ -11,10 +11,19 @@
         <option value="" disabled selected>--Select your party--</option>
         <option value="Jeff Cockerill">Mr. & Mrs. Jeffrey Cockerill, Zoey</option>
         <option value="Samuel Covington">Mr. & Mrs. Samuel Covington, Ivor, Juno</option>
-
+        <option value="Adams, Mr. Robin / +1">Adams, Mr. Robin / +1</option>
       </select>
     </label>
     
+    <label id="plus1-section">
+      Will you be bringing a guest?
+      <select name="plus1-selector">
+        <option value="" disabled selected>--Select an option--</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+    </label>
+
     <label>
       Will you attend?
       <select name="attendance" required>
@@ -38,12 +47,12 @@
 <script>
   const form = document.getElementById('rsvp-form') as HTMLFormElement;
   const msg = document.getElementById('response-msg');
-
+  const guestSelection = document.getElementById('party-members')
+  const plus1section = document.getElementById("plus1-section")
+  
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
-    //const data = Object.fromEntries(formData);
-
     fetch("/", { 
         method: 'POST',
         body: formData
@@ -51,14 +60,29 @@
 
     form.style.display = 'none';
     if (msg) msg.style.display = 'block';
-  });
+
+
+
+  })
+
+  guestSelection?.addEventListener('input', function(e) {
+
+      if (guestSelection.value.includes("+1")) {
+        plus1section.style.display = 'contents'
+
+      } else {
+        plus1section.style.display = 'none'
+      }
+
+  })
+
 </script>
 
 <style>
 
 .rsvp-container {
     max-width: 360px;
-    height: 435px;
+    height: auto;
     margin: .75rem auto 2rem auto;
     padding: 1.2rem;
     border: 3px solid var(--light-blue-color);
@@ -69,7 +93,8 @@
 }
 
 #response-msg {
-    margin-top: 180px;
+    /* margin-top: 180px; */
+    margin: 180px 0px 180px 0px;
     text-align: center;
     display: none;
     font-family: var(--font-primary);
@@ -77,11 +102,16 @@
     font-weight: 700;
 
 }
+
+#plus1-section {
+  display: none;
+}
   
 form { 
     display: flex; 
     flex-direction: column; 
-    gap: 1rem; 
+    gap: 1rem;
+    height: auto;
 }
 
 label {
