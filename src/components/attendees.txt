@@ -1,0 +1,47 @@
+<option value="Jeff Cockerill">Mr. & Mrs. Jeffrey Cockerill, Zoey</option>
+<option value="Samuel Covington">Mr. & Mrs. Samuel Covington, Ivor, Juno</option>
+
+Adams, Mr. and Mrs. John
+Adams, Mr. Robin / +1
+Adams, Mr. and Mrs. Steve
+Adams, Mr. and Mrs. Thomas
+Buxton, Ms(?). Sally
+Causey, Ms. Ashley / +1(?)
+Cockerill, Mr. and Mrs. Jeffrey / Zoey
+Covington, Mr. Harrison / ?, Ms. Mercer
+Covington, Mr. and Mrs. Johnny (?)
+Covington, Ms. Judy
+Covington, Dr. and Mrs. Samuel
+Covington, Mr. and Mrs. Samuel / Ivor & Juno
+Covington, Mr. Thomas / +1
+Crawford, Mr. Jeff
+Davila, Mr. and Mrs. ?
+Gandy, Ms. T. Ann / +1
+Hazelwood, Mr. and Mrs. KC
+Hubert, Mr. and Mrs. Patrick
+Jellico, Mr. and Mrs. Jerry
+Jenkins, Mrs. Nathalyn
+Jordan, Mr. and Mrs. Antonio
+Kaasa, Mr. and Mrs. Jesse
+Kaasa, Peter / +1
+Karst, Mr. and Mrs. Dustin
+Knee, Mr. Ricky / Mrs. Amy Knee-Destefanis
+Nolan, Mr. Clint / Covington, Ms. Lauruh / Ruby & Max
+Nile, Ms. Susan / McFarland, Mr. John
+Ordonez, Mr. and Mrs. Marco
+Parish, Mr. and Mrs. Brandon
+Price, Dr. Beth / Price, Mr. Kevin
+Self, Mr. and Mrs. Shane
+Shackleford, Mr. and Mrs. Philip
+Smith, Mr. and Mrs. Donald
+Smith, Ms(?). Anna
+Smith, Ms(?). Maggie
+Stabile, Mr. Dominic / Williams, Ms. Patricia
+Stabile, Mr. and Mrs. Dominic
+Stabile, Ms. Nicki / Mitchell, Mr. Alan
+Whirley, Ms. Rebekah / +1(?)
+Willis, Mrs. Debra
+Yaun, Mr. and Mrs. William
+Yaun, Mr. Chris / +1
+Aunt (?) Ms. Kelly
+Uncle (?), Mr. Paul
