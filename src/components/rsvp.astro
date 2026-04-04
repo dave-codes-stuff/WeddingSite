@@ -3,9 +3,11 @@
 ---
 
 <div class="rsvp-container">
-  
+
   <form id="rsvp-form" action="POST" name="RSVP Form" data-netlify="true">
+    
     <h2>Will you be attending?</h2>
+
     <label for="party">Choose party:
       <select name="party" id="party-members" size="1" required>
         <option value="--Select your party--" disabled selected />
@@ -55,7 +57,7 @@
       </select>
     </label>
 
-    <label>
+    <label for="attendance">
       Will you attend?
       <select name="attendance" id="attendance-selector" required>
         <option value="" disabled selected>--Select an option--</option>
@@ -64,7 +66,7 @@
       </select>
     </label>
     
-    <label id="plus1-section">
+    <label for="plus1" id="plus1-section">
       Will you be bringing a guest?
       <select name="plus1" id="plus1-selector">
         <option value="" disabled selected>--Select an option--</option>
@@ -73,42 +75,28 @@
       </select>
     </label>
 
-    <label>
+    <label for="dietary_additional">
       Dietary Restrictions / Notes:
       <textarea name="dietary_additional" placeholder="e.g. Vegan, Gluten-free, Some party members won't be attending..." rows="5"></textarea>
     </label>
 
     <button type="submit">Send RSVP</button>
+
   </form>
   
   <p id="response-msg">Thanks!</p>
+
 </div>
 
 <script>
-import { array } from "astro:schema";
 
   const form = document.getElementById('rsvp-form') as HTMLFormElement;
   const msg = document.getElementById('response-msg');
-  const guestSelection = document.getElementById('party-members')
-  const attendanceSelection = document.getElementById('attendance-selector')
-  const plus1section = document.getElementById("plus1-section")
-  const plus1selector = document.getElementById("plus1-selector")
+  const guestSelection = document.getElementById('party-members');
+  const attendanceSelection = document.getElementById('attendance-selector');
+  const plus1section = document.getElementById("plus1-section");
+  const plus1selector = document.getElementById("plus1-selector");
   
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    fetch("/", { 
-        method: 'POST',
-        body: formData
-    });
-
-    form.style.display = 'none';
-    if (msg) msg.style.display = 'block';
-
-
-
-  })
-
   // Make each option use value as text that displays
   Array.from(guestSelection.options).forEach(option => {
     option.innerHTML = option.value;
@@ -119,7 +107,7 @@ import { array } from "astro:schema";
     plus1section.style.display = 'none';
     plus1selector.value = "";
 
-})
+  })
 
   attendanceSelection?.addEventListener ('input', function() {
     if (attendanceSelection.value === "yes" && guestSelection.value.includes("+1")) {
@@ -131,76 +119,89 @@ import { array } from "astro:schema";
     }
   })
 
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    fetch("/", { 
+        method: 'POST',
+        body: formData
+    });
+
+    form.style.display = 'none';
+    if (msg) msg.style.display = 'block';
+    
+  })
+
 </script>
 
 <style>
 
-.rsvp-container {
-    max-width: 360px;
-    height: auto;
-    margin: .75rem auto 2rem auto;
-    padding: 1.2rem;
-    border: 3px solid var(--light-blue-color);
-    border-radius: 8px;
-    background-color: var(--dark-blue-color);
-    color: var(--off-white-color);
-    font-family: var(--font-primary);
-}
+  .rsvp-container {
+      max-width: 360px;
+      height: auto;
+      margin: .75rem auto 2rem auto;
+      padding: 1.2rem;
+      border: 3px solid var(--light-blue-color);
+      border-radius: 8px;
+      background-color: var(--dark-blue-color);
+      color: var(--off-white-color);
+      font-family: var(--font-primary);
+  }
 
-#response-msg {
-    /* margin-top: 180px; */
-    margin: 180px 0px 180px 0px;
-    text-align: center;
+  #response-msg {
+      /* margin-top: 180px; */
+      margin: 180px 0px 180px 0px;
+      text-align: center;
+      display: none;
+      font-family: var(--font-primary);
+      font-size: 1.4rem;
+      font-weight: 700;
+
+  }
+
+  #plus1-section {
     display: none;
-    font-family: var(--font-primary);
-    font-size: 1.4rem;
-    font-weight: 700;
+  }
+    
+  form { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 1rem;
+      height: auto;
+  }
 
-}
+  label {
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
+  }
 
-#plus1-section {
-  display: none;
-}
-  
-form { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 1rem;
-    height: auto;
-}
+  input, select, textarea { 
+      padding: 0.5rem; 
+      margin-top: 0.75rem; 
+  }
 
-label {
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
-}
+  select {
+      cursor: pointer;
+      overflow-wrap: break-word;
+  }
 
-input, select, textarea { 
-    padding: 0.5rem; 
-    margin-top: 0.75rem; 
-}
-
-select {
-    cursor: pointer;
+  option {
     overflow-wrap: break-word;
-}
+  }
 
-option {
-  overflow-wrap: break-word;
-}
+  h2 {
+      text-align: center;
+      margin-bottom: 0%;
+  }
 
-h2 {
-    text-align: center;
-    margin-bottom: 0%;
-}
-
-button {
-    padding: 12px;
-    margin: 5px 10px auto 10px;
-    background-color: var(--blue-green-color);
-    cursor: pointer;
-    border-radius: 8px;
-    font-weight: bold;
-}
+  button {
+      padding: 12px;
+      margin: 5px 10px auto 10px;
+      background-color: var(--blue-green-color);
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: bold;
+  }
 
 </style>

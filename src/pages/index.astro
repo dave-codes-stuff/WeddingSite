@@ -125,157 +125,153 @@ import RSVP from "../components/rsvp.astro"
 
 <style define:vars={{ gardenBackground }}>
 
-:root {
-    --dark-blue-color: #0f1534;
-    --light-blue-color: #345d87;
-    --off-white-color: #ECECEC;
-	--blue-green-color: #81c7a9;
-	--brown-color: #625824;
+	:root {
+		--dark-blue-color: #0f1534;
+		--light-blue-color: #345d87;
+		--off-white-color: #ECECEC;
+		--blue-green-color: #81c7a9;
+		--brown-color: #625824;
+	}
 
-}
-
-html { 
-  background: var(--gardenBackground) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-body {
-	height: 100%;
-    margin: 0;
-	max-width: 1000px; /* Or a width in % or ch */
-  	margin: 0 auto;    /* Centers the section */
-	background-color: #ECECEC99;
-
-}
-
-p {
-	padding: 0px 100px 0px 100px;
-	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	font-size: 1.3rem;
-}
-
-hr {
-	display: none;
-border-bottom: 2px solid #606060; /* Darker charcoal option */  
-width: 25%;
-}
-
-#main-header {
-    align-items: center;     /* Centers vertically */
-    background-color: var(--dark-blue-color);
-	/* background-image: var(--gardenBackground); */
+	html { 
+	background: var(--gardenBackground) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 	background-size: cover;
-	background-position: center;
-    color: white;
-    display: flex;
-    flex-direction: column;
-	font-family: var(--font-header);
-	font-size: 1.2rem;
-	letter-spacing: 0.4rem;
-	height: 22rem;
-    justify-content: center; /* Centers horizontally */
-	border-bottom-left-radius: 50% 20%;
-	border-bottom-right-radius: 50% 20%;
-	border-bottom: 30px groove var(--blue-green-color);
+	}
 
+	body {
+		height: 100%;
+		margin: 0;
+		max-width: 1000px; /* Or a width in % or ch */
+		margin: 0 auto;    /* Centers the section */
+		background-color: #ECECEC99;
+	}
+
+	p {
+		padding: 0px 100px 0px 100px;
+		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		font-size: 1.3rem;
+	}
+
+	/*In case I decide to use HRs*/
+	hr {
+		
+		display: none;
+		border-bottom: 2px solid #606060; /* Darker charcoal option */  
+		width: 25%;
+	}
+
+	#main-header {
+		align-items: center;  
+		background-color: var(--dark-blue-color);
+		background-size: cover;
+		background-position: center;
+		color: white;
+		display: flex;
+		flex-direction: column;
+		font-family: var(--font-header);
+		font-size: 1.2rem;
+		letter-spacing: 0.4rem;
+		height: 22rem;
+		justify-content: center; /* Centers horizontally */
+		border-bottom-left-radius: 50% 20%;
+		border-bottom-right-radius: 50% 20%;
+		border-bottom: 30px groove var(--blue-green-color);
+	}
+
+	#sarah-main-name h2:first-of-type {
+		margin-bottom: 0px;
+		margin-top: 40px;
+	}
+
+	#sarah-main-name h2:last-of-type {
+		margin-bottom: 0px;
+	}
+
+	#david-main-name h2 {
+		margin-top: 0px;
+		margin-bottom: 40px;
+	}
+
+	#welcome-section {
+		align-items: center;
+		padding-top: 2rem;
+		text-align: center;
+		font-family: var(--font-primary);
+	}
+
+	#story-section {
 	
-}
+	}
 
-#sarah-main-name h2:first-of-type {
-	margin-bottom: 0px;
-	margin-top: 40px;
-}
+	#rsvp-section {
+		padding-bottom: 50px;
+	}
 
-#sarah-main-name h2:last-of-type {
-	margin-bottom: 0px;
-}
+	.center-image {
+		display: block;
+		margin: 0 auto;
+	}
 
-#david-main-name h2 {
-	margin-top: 0px;
-	margin-bottom: 40px;
-}
+	.image-style-1 {
+		border-radius: 8px;
+		border: 3px solid var(--light-blue-color);
+		margin-top: 15px;
+		width: 700px;
+		height: auto;
+	}
 
-
-#welcome-section {
-	align-items: center;
-	padding-top: 2rem;
-	text-align: center;
-	font-family: var(--font-primary);
-}
-
-#story-section {
-}
-
-#rsvp-section {
-	padding-bottom: 50px;
-}
+	.section-header {
+		text-align:left;
+		font-size: 38px;
+		margin: 0px;
+		margin-left: 100px;
+		color: var(--light-blue-color);
+	}
 
 
-.center-image {
-    display: block;
-    margin: 0 auto;
-}
+	@media screen and (max-width: 1000px) {
 
-.image-style-1 {
-	border-radius: 8px;
-	border: 3px solid var(--light-blue-color);
-	margin-top: 15px;
-	width: 700px;
-	height: auto;
-}
+		.section-header {
+			margin-left: 80px;
+		}
+		.image-style-1 {
+			width: 500px;
+			height: auto;
+		}
 
-.section-header {
-	text-align:left;
-	font-size: 38px;
-	margin: 0px;
-	margin-left: 100px;
-	color: var(--light-blue-color);
-}
+		body {
+			max-width: 90%;
+		}
+
+	}
 
 
-@media screen and (max-width: 1000px) {
+	@media screen and (max-width: 600px) {
+		h2, h3 {
+			font-size: 1.3rem; 
+			line-height: 1.4;
+		}
+		p {
+			padding: 0px 40px 0px 40px;
+		}
 
-.section-header {
-	margin-left: 80px;
-}
-.image-style-1 {
-	width: 500px;
-	height: auto;
-}
+		.section-header {
+			margin: 0px;
+			text-align: center;
+		}
 
-body {
-	max-width: 90%;
-}
+		.image-style-1 {
+			width: 400px;
+			height: auto;
+		}
 
-}
+		body {
+			max-width: 95%;
+		}
 
-
-@media screen and (max-width: 600px) {
-  h2, h3 {
-    font-size: 1.3rem; /* Adjust size for mobile */
-    line-height: 1.4;
-    /* padding: 0 20px; Prevents text from hitting screen edges */
-  }
-  p{
-  padding: 0px 40px 0px 40px;
-
-  }
-  .section-header {
-	margin: 0px;
-	text-align: center;
-  }
-  .image-style-1 {
-	width: 400px;
-	height: auto;
-  }
-
-  body {
-	max-width: 95%;
-  }
-
-}
+	}
 
 </style>
