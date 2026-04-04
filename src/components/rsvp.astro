@@ -8,25 +8,65 @@
     <h2>Will you be attending?</h2>
     <label for="party">Choose party:
       <select name="party" id="party-members" size="1" required>
-        <option value="" disabled selected>--Select your party--</option>
-        <option value="Jeff Cockerill">Mr. & Mrs. Jeffrey Cockerill, Zoey</option>
-        <option value="Samuel Covington">Mr. & Mrs. Samuel Covington, Ivor, Juno</option>
-        <option value="Adams, Mr. Robin / +1">Adams, Mr. Robin / +1</option>
-      </select>
-    </label>
-    
-    <label id="plus1-section">
-      Will you be bringing a guest?
-      <select name="plus1-selector">
-        <option value="" disabled selected>--Select an option--</option>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
+        <option value="--Select your party--" disabled selected />
+        <option value="Adams, Mr. and Mrs. John"/>
+        <option value="Adams, Mr. and Mrs. Stephen"/>
+        <option value="Adams, Mr. and Mrs. Thomas"/>
+        <option value="Adams, Mr. Robin / +1"/>
+        <option value="Buxton, Ms. Sarah / +1"/>
+        <option value="Causey, Ms. Ashley / +1"/>
+        <option value="Cockerill, Mr. and Mrs. Jeffrey / Zoey"/>
+        <option value="Covington, Dr. and Mrs. Samuel"/>
+        <option value="Covington, Mr. and Mrs. Jonathan"/>
+        <option value="Covington, Mr. and Mrs. Samuel / Ivor & Juno"/>
+        <option value="Covington, Mr. Harrison / Reynolds, Ms. Mercer"/>
+        <option value="Covington, Mr. Paul / +1"/>
+        <option value="Covington, Mr. Thomas / +1"/>
+        <option value="Covington, Mrs. Benjamin H."/>
+        <option value="Covington, Ms. Kelly / +1"/>
+        <option value="Crawford, Mr. and Mrs. Jeffrey"/>
+        <option value="Davila, Mr. and Mrs. Jonathan"/>
+        <option value="Fuller, Ms. Ashley / +1"/>
+        <option value="Gandy, Ms. T. Ann / +1"/>
+        <option value="Hubert, Mr. and Mrs. Micheal"/>
+        <option value="Jellico, Mr. and Mrs. Jerry"/>
+        <option value="Jenkins, Mrs. Theodore"/>
+        <option value="Jordan, Mr. and Mrs. Antonio"/>
+        <option value="Kaasa, Mr. and Mrs. Jesse"/>
+        <option value="Kaasa, Peter / +1"/>
+        <option value="Karst, Mr. and Mrs. Dustin"/>
+        <option value="Knee, Mr. Ricky / Mrs. Amy DeStefanis"/>
+        <option value="McFarland, Mr. John / Nile, Mrs. Susan"/>
+        <option value="Nolan, Mr. Clint / Covington, Ms. Lauruh / Ruby & Max"/>
+        <option value="Ordonez, Mr. and Mrs. Marco"/>
+        <option value="Parish, Mr. and Mrs. Brandon"/>
+        <option value="Price, Dr. Beth / Price, Mr. Kevin"/>
+        <option value="Self, Mr. and Mrs. Shane"/>
+        <option value="Smith, Mr. and Mrs. Donald / Smith, Ms. Anna"/>
+        <option value="Smith, Ms. Maggie / +1"/>
+        <option value="Stabile, Mr. and Mrs. Dominic"/>
+        <option value="Stabile, Mr. Dominic / Williams, Ms. Patricia"/>
+        <option value="Stabile, Ms. Nicki / +1"/>
+        <option value="Terry, Mr. Chrisopher / +1"/>
+        <option value="Whirley, Ms. Rebekah / +1"/>
+        <option value="Willis, Mrs. Thomas / +1"/>
+        <option value="Yaun, Mr. and Mrs. William"/>
+        <option value="Yaun, Mr. Chris / +1"/>
       </select>
     </label>
 
     <label>
       Will you attend?
-      <select name="attendance" required>
+      <select name="attendance" id="attendance-selector" required>
+        <option value="" disabled selected>--Select an option--</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+    </label>
+    
+    <label id="plus1-section">
+      Will you be bringing a guest?
+      <select name="plus1" id="plus1-selector">
         <option value="" disabled selected>--Select an option--</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
@@ -45,10 +85,14 @@
 </div>
 
 <script>
+import { array } from "astro:schema";
+
   const form = document.getElementById('rsvp-form') as HTMLFormElement;
   const msg = document.getElementById('response-msg');
   const guestSelection = document.getElementById('party-members')
+  const attendanceSelection = document.getElementById('attendance-selector')
   const plus1section = document.getElementById("plus1-section")
+  const plus1selector = document.getElementById("plus1-selector")
   
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -65,15 +109,26 @@
 
   })
 
+  // Make each option use value as text that displays
+  Array.from(guestSelection.options).forEach(option => {
+    option.innerHTML = option.value;
+  })
+
   guestSelection?.addEventListener('input', function(e) {
+    attendanceSelection.value = "";
+    plus1section.style.display = 'none';
+    plus1selector.value = "";
 
-      if (guestSelection.value.includes("+1")) {
-        plus1section.style.display = 'contents'
+})
 
-      } else {
-        plus1section.style.display = 'none'
-      }
-
+  attendanceSelection?.addEventListener ('input', function() {
+    if (attendanceSelection.value === "yes" && guestSelection.value.includes("+1")) {
+      plus1section.style.display = 'contents';
+      plus1selector.required = true;
+    } else {
+      plus1section.style.display = 'none';
+      plus1selector.required = false;
+    }
   })
 
 </script>
