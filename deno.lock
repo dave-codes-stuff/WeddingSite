@@ -13,6 +13,7 @@
       "dependencies": [
         "npm:@astrojs/netlify@^7.0.3",
         "npm:@astrojs/node@^10.0.2",
+        "npm:@netlify/functions@^5.1.5",
         "npm:@types/node@^25.5.0",
         "npm:astro@^6.0.3"
       ]
