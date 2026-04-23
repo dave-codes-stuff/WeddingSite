@@ -4,8 +4,10 @@
 
 <div class="rsvp-container">
 
-  <form id="rsvp-form" action="POST" name="RSVP Form" data-netlify="true">
-    
+  <form id="rsvp-form" method="POST" name="RSVP Form" data-netlify="true" data-netlify-honeypot="bot-field">
+
+    <p style="display:none"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
     <h2>Will you be attending?</h2>
 
     <label for="party">Choose party:
@@ -153,7 +155,7 @@
   const notesField       = form.querySelector('textarea') as HTMLTextAreaElement;
 
   Array.from(guestSelection.options).forEach(option => {
-    option.innerHTML = option.value;
+    option.textContent = option.value;
   });
 
   guestSelection?.addEventListener('input', () => {
