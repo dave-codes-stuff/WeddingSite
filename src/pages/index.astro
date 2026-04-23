@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 
 import IMG_gardenBackground from '../images/garden-background.webp';
 import IMG_sarahAndDaveLookingGlassSitting from '../images/sarahanddave_looking_glass_sitting.webp';
+import IMG_sarahAndDaveLookingGlassStanding from '../images/sarahanddave_looking_glass_standing.webp';
 
 const gardenBackground = `url("${IMG_gardenBackground.src}")`;
 
@@ -28,7 +29,7 @@ import RSVP from "../components/rsvp.astro"
 		<div id="main-header" >
 			<div id="sarah-main-name">
 				<h2>SARAH ELIZABETH</h2>
-				<h2>PR&Egrave;OT COVINGTON</h2>
+				<h2>PR&Eacute;OT COVINGTON</h2>
 			</div>
 			<h3>&</h3>
 			<div id="david-main-name">
@@ -44,47 +45,44 @@ import RSVP from "../components/rsvp.astro"
 		</div>
 		<div id="story-section">
 			<h2 class="section-header">Our Story</h2>
+			<p>
+				It all started with a simple cup of coffee, 
+				and somehow it evolved into a full-blown domestic ecosystem. Since that 
+				first date, we’ve built a life filled with the things we love most: 
+				Sarah tending to her garden, David dedicated to his writing practice, 
+				and a home overflowing with books, music, and retro video games.
+			</p>
+
 			<Image class="center-image image-style-1" src={IMG_sarahAndDaveLookingGlassSitting} alt="Sarah and David sitting at Looking Glass Falls, North Carolina"/>
-			<p> 
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed 
-				sagittis ex quis ligula ornare, vitae dignissim lacus elementum.
-				Curabitur luctus est eros. Donec faucibus, elit nec sollicitudin
-				sodales, est nunc suscipit nulla, sit amet egestas eros arcu 
-				sit amet nisi. Phasellus at ligula eget ligula dictum tempus 
-				ac vitae lectus. Nulla ultrices ante et est tempus hendrerit. 
-				Integer ac odio at arcu luctus finibus. Nulla nec ipsum diam. 
-				Cras viverra elit leo, sit amet tincidunt enim vehicula non. 
-				In accumsan, sem bibendum finibus aliquam, nibh purus consequat 
-				ipsum, et posuere sem tellus et eros. Sed id gravida nisl. Duis
-				dapibus purus a semper efficitur. Nulla ut eros vel sapien 
-				facilisis lacinia et vitae nisi. Mauris commodo, odio nec 
-				porta laoreet, arcu lectus eleifend sapien, sodales aliquam ex 
-				ipsum eu justo. Morbi ullamcorper porttitor nisl, eu cursus 
-				urna tempus faucibus.
-			</p>
+
 			<p>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mauris ac pellentesque purus. Aenean a accumsan lorem, vitae 
-				porttitor sapien. In vel finibus leo, et consectetur ex. Morbi 
-				interdum porta tempor. Maecenas diam nisl, scelerisque ut nunc 
-				sit amet, semper posuere massa. Aliquam ac maximus ex. 
-				Curabitur quis felis justo. Pellentesque tempus neque a ipsum
-				malesuada imperdiet. Nunc cursus eget justo vitae vestibulum. 
-				Nam porta augue in ipsum maximus ornare. Cras sed lacus turpis. 
-				Aenean blandit lacus sit amet aliquet consectetur. Mauris eu 
-				diam turpis. Aliquam quis semper eros.
+				When we aren’t out for long walks, we’re 
+				busy serving our four demanding roommates. First, there is 
+				<strong>Marley</strong>, our Shih Tzu who lives by a grueling schedule 
+				of "walk, nap, repeat" (with several union-mandated snack breaks in 
+				between). He is joined by <strong>Eleanor</strong>, a Victorian Duchess 
+				who is deeply confused as to why she was reborn as a quadruped, and 
+				<strong>Teyla</strong>, the rambunctious kitten currently in charge of 
+				daily chaos. Finally, there’s <strong>Donnie</strong>, the Russian 
+				Tortoise. Donnie has a very demanding, high-profile career as a 
+				classroom pet.
 			</p>
+
 			<p>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quisque dignissim vel felis eget accumsan. Sed tincidunt ac 
-				lectus at dictum. Aenean risus urna, finibus ac pulvinar vitae, 
-				porta a risus. Nunc sem leo, egestas vitae nisi nec, eleifend 
-				rhoncus est. Duis ultrices purus a volutpat hendrerit. In hac 
-				habitasse platea dictumst. Aliquam erat volutpat. Donec tempus
-				euismod tempus. Integer non diam vitae magna faucibus vulputate 
-				id non quam. Mauris ut neque eget ante rutrum pulvinar eget 
-				vitae mi. Integer sodales massa neque, ut elementum eros
-				elementum ac. Fusce nulla nunc, consectetur ut pulvinar et, 
-				efficitur vitae orci. Nunc molestie vehicula ipsum vitae tempus. 
+				Whether we’re digging in the dirt, hitting 
+				a word count goal, or trying to stay on Marley’s strict walking 
+				rotation, we’ve discovered that life is just better together. We are 
+				so excited to step away from the garden and the desk for a few hours 
+				to celebrate the start of our next chapter with all of you!
 			</p>
+
+			<p><strong>We can't wait to see you there!</strong></p>
+
+			<Image class="center-image image-style-1" src={IMG_sarahAndDaveLookingGlassStanding} alt="Sarah and David standing at Looking Glass Falls, North Carolina"/>
+
+
+
+
 			<hr/>
 		</div>
 		<div id="family-section">
@@ -202,8 +200,18 @@ import RSVP from "../components/rsvp.astro"
 		font-family: var(--font-primary);
 	}
 
-	#story-section {
-	
+	#story-section p:first-of-type::first-letter {
+        float: left;
+        font-size: 3.5em; /* Adjust size as needed */
+        line-height: 0.8;
+        padding-right: 8px;
+        padding-top: 4px;
+        font-weight: bold;
+		
+	}
+
+	#family-section {
+		display: none;
 	}
 
 	#rsvp-section {
@@ -218,7 +226,8 @@ import RSVP from "../components/rsvp.astro"
 	.image-style-1 {
 		border-radius: 8px;
 		border: 3px solid var(--light-blue-color);
-		margin-top: 15px;
+		margin-top: 30px;
+		margin-bottom: 30px;
 		width: 700px;
 		height: auto;
 	}
