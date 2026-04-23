@@ -104,54 +104,109 @@
     <button type="submit">Send RSVP</button>
 
   </form>
-  
+
+  <div id="confirmation">
+    <h2>Confirm your RSVP</h2>
+    <div class="confirm-row">
+      <span class="confirm-label">Party</span>
+      <span id="confirm-party" class="confirm-value"></span>
+    </div>
+    <div class="confirm-row">
+      <span class="confirm-label">Attending</span>
+      <span id="confirm-attending" class="confirm-value"></span>
+    </div>
+    <div class="confirm-row" id="confirm-plus1-row">
+      <span class="confirm-label">Bringing a guest</span>
+      <span id="confirm-plus1" class="confirm-value"></span>
+    </div>
+    <div class="confirm-row" id="confirm-notes-row">
+      <span class="confirm-label">Notes</span>
+      <span id="confirm-notes" class="confirm-value"></span>
+    </div>
+    <div class="confirm-actions">
+      <button id="edit-btn" type="button" class="btn-ghost">Edit</button>
+      <button id="confirm-btn" type="button">Confirm</button>
+    </div>
+  </div>
+
   <p id="response-msg">Thanks!</p>
 
 </div>
 
 <script>
 
-  const form = document.getElementById('rsvp-form') as HTMLFormElement;
-  const msg = document.getElementById('response-msg');
-  const guestSelection = document.getElementById('party-members');
-  const attendanceSelection = document.getElementById('attendance-selector');
-  const plus1section = document.getElementById("plus1-section");
-  const plus1selector = document.getElementById("plus1-selector");
-  
-  // Make each option use value as text that displays
+  const form             = document.getElementById('rsvp-form') as HTMLFormElement;
+  const msg              = document.getElementById('response-msg');
+  const guestSelection   = document.getElementById('party-members') as HTMLSelectElement;
+  const attendanceSelection = document.getElementById('attendance-selector') as HTMLSelectElement;
+  const plus1section     = document.getElementById('plus1-section') as HTMLElement;
+  const plus1selector    = document.getElementById('plus1-selector') as HTMLSelectElement;
+  const confirmation     = document.getElementById('confirmation') as HTMLElement;
+  const confirmParty     = document.getElementById('confirm-party') as HTMLElement;
+  const confirmAttending = document.getElementById('confirm-attending') as HTMLElement;
+  const confirmPlus1Row  = document.getElementById('confirm-plus1-row') as HTMLElement;
+  const confirmPlus1     = document.getElementById('confirm-plus1') as HTMLElement;
+  const confirmNotesRow  = document.getElementById('confirm-notes-row') as HTMLElement;
+  const confirmNotes     = document.getElementById('confirm-notes') as HTMLElement;
+  const editBtn          = document.getElementById('edit-btn') as HTMLButtonElement;
+  const confirmBtn       = document.getElementById('confirm-btn') as HTMLButtonElement;
+  const notesField       = form.querySelector('textarea') as HTMLTextAreaElement;
+
   Array.from(guestSelection.options).forEach(option => {
     option.innerHTML = option.value;
-  })
+  });
 
-  guestSelection?.addEventListener('input', function(e) {
-    attendanceSelection.value = "";
+  guestSelection?.addEventListener('input', () => {
+    attendanceSelection.value = '';
     plus1section.style.display = 'none';
-    plus1selector.value = "";
+    plus1selector.value = '';
+  });
 
-  })
-
-  attendanceSelection?.addEventListener ('input', function() {
-    if (attendanceSelection.value === "yes" && guestSelection.value.includes("+1")) {
+  attendanceSelection?.addEventListener('input', () => {
+    if (attendanceSelection.value === 'yes' && guestSelection.value.includes('+1')) {
       plus1section.style.display = 'contents';
       plus1selector.required = true;
     } else {
       plus1section.style.display = 'none';
       plus1selector.required = false;
     }
-  })
+  });
 
-  form?.addEventListener('submit', async (e) => {
+  form?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const formData = new FormData(form);
-    fetch("/", { 
-        method: 'POST',
-        body: formData
-    });
 
-    form.style.display = 'none';
+    confirmParty.textContent     = guestSelection.value;
+    confirmAttending.textContent = attendanceSelection.value === 'yes' ? 'Yes' : 'No';
+
+    if (attendanceSelection.value === 'yes' && guestSelection.value.includes('+1')) {
+      confirmPlus1.textContent        = plus1selector.value === 'yes' ? 'Yes' : 'No';
+      confirmPlus1Row.style.display   = 'flex';
+    } else {
+      confirmPlus1Row.style.display   = 'none';
+    }
+
+    if (notesField.value.trim()) {
+      confirmNotes.textContent        = notesField.value.trim();
+      confirmNotesRow.style.display   = 'flex';
+    } else {
+      confirmNotesRow.style.display   = 'none';
+    }
+
+    form.style.display         = 'none';
+    confirmation.style.display = 'flex';
+  });
+
+  editBtn?.addEventListener('click', () => {
+    confirmation.style.display = 'none';
+    form.style.display         = 'flex';
+  });
+
+  confirmBtn?.addEventListener('click', () => {
+    const formData = new FormData(form);
+    fetch('/', { method: 'POST', body: formData });
+    confirmation.style.display = 'none';
     if (msg) msg.style.display = 'block';
-    
-  })
+  });
 
 </script>
 
@@ -259,6 +314,55 @@
 
   button:active {
       transform: scale(0.98);
+  }
+
+  .btn-ghost {
+      background-color: transparent;
+      color: var(--off-white-color);
+      border: 1px solid rgba(236, 236, 236, 0.4);
+  }
+
+  .btn-ghost:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  #confirmation {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+  }
+
+  .confirm-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0.65rem 0.75rem;
+      background-color: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(52, 93, 135, 0.5);
+      border-radius: 6px;
+  }
+
+  .confirm-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+      color: var(--blue-green-color);
+  }
+
+  .confirm-value {
+      font-size: 0.95rem;
+      color: var(--off-white-color);
+  }
+
+  .confirm-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.25rem;
+  }
+
+  .confirm-actions button {
+      flex: 1;
   }
 
 </style>
