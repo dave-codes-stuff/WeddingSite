@@ -38,9 +38,9 @@ import RSVP from "../components/rsvp.astro"
 		</div>
 		<div id="welcome-section">
 			<h2>Saturday July 11th, 2026 @ 5PM</h2>
-			<h3>Church of The Holy Communion</h2>
-			<h4>218 Ashley Ave</h2>
-			<h4>Charleston, SC 29403</h2>
+			<h3>Church of The Holy Communion</h3>
+			<h4>218 Ashley Ave</h4>
+			<h4>Charleston, SC 29403</h4>
 			<hr/>
 		</div>
 		<div id="story-section">
@@ -116,8 +116,11 @@ import RSVP from "../components/rsvp.astro"
 			<RSVP />
 			<hr/>
 		</div>
-		
-		
+
+		<div id="lightbox">
+			<img id="lightbox-img" src="" alt="" />
+		</div>
+
 	</body>
 </html>
 
@@ -149,7 +152,7 @@ import RSVP from "../components/rsvp.astro"
 
 	p {
 		padding: 0px 100px 0px 100px;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		font-family: var(--font-primary);
 		font-size: 1.3rem;
 	}
 
@@ -162,8 +165,8 @@ import RSVP from "../components/rsvp.astro"
 	}
 
 	#main-header {
-		align-items: center;  
-		background-color: var(--dark-blue-color);
+		align-items: center;
+		background: linear-gradient(to bottom, #162048, var(--dark-blue-color));
 		background-size: cover;
 		background-position: center;
 		color: white;
@@ -171,25 +174,41 @@ import RSVP from "../components/rsvp.astro"
 		flex-direction: column;
 		font-family: var(--font-header);
 		font-size: 1.2rem;
-		letter-spacing: 0.4rem;
+		letter-spacing: 0.25rem;
 		height: 22rem;
-		justify-content: center; /* Centers horizontally */
+		justify-content: center;
 		border-bottom-left-radius: 50% 20%;
 		border-bottom-right-radius: 50% 20%;
-		border-bottom: 30px groove var(--blue-green-color);
+		border-bottom: 3px solid var(--blue-green-color);
+	}
+
+	#main-header h2 {
+		font-size: 1.6rem;
+		margin: 0;
+	}
+
+	#main-header h3 {
+		display: flex;
+		align-items: center;
+		gap: 1.2rem;
+		width: 65%;
+		font-size: 2rem;
+		margin: 0.4rem 0;
+	}
+
+	#main-header h3::before,
+	#main-header h3::after {
+		content: '';
+		flex: 1;
+		height: 1px;
+		background: rgba(129, 199, 169, 0.5);
 	}
 
 	#sarah-main-name h2:first-of-type {
-		margin-bottom: 0px;
 		margin-top: 40px;
 	}
 
-	#sarah-main-name h2:last-of-type {
-		margin-bottom: 0px;
-	}
-
 	#david-main-name h2 {
-		margin-top: 0px;
 		margin-bottom: 40px;
 	}
 
@@ -200,14 +219,38 @@ import RSVP from "../components/rsvp.astro"
 		font-family: var(--font-primary);
 	}
 
+	#welcome-section h2 {
+		font-family: var(--font-header);
+		font-size: 1.8rem;
+		font-weight: 400;
+		letter-spacing: 0.1rem;
+		margin-bottom: 0.4rem;
+	}
+
+	#welcome-section h3 {
+		font-size: 1.05rem;
+		font-weight: 600;
+		letter-spacing: 0.05rem;
+		color: var(--light-blue-color);
+		margin: 0;
+		margin-top: 20px;
+	}
+
+	#welcome-section h4 {
+		font-size: 0.95rem;
+		font-weight: 400;
+		margin: 0.2rem 0;
+	}
+
 	#story-section p:first-of-type::first-letter {
         float: left;
-        font-size: 3.5em; /* Adjust size as needed */
-        line-height: 0.8;
-        padding-right: 8px;
-        padding-top: 4px;
-        font-weight: bold;
-		
+        font-family: var(--font-header);
+        font-size: 6em;
+        line-height: 0.72;
+        padding-right: 12px;
+        padding-top: 8px;
+        color: var(--brown-color);
+        font-weight: 400;
 	}
 
 	#family-section {
@@ -234,10 +277,16 @@ import RSVP from "../components/rsvp.astro"
 
 	.section-header {
 		text-align:left;
+		font-family: var(--font-header);
 		font-size: 38px;
+		font-weight: 400;
 		margin: 0px;
 		margin-left: 100px;
 		color: var(--light-blue-color);
+	}
+
+	#story-section .section-header {
+		margin-top: 40px;
 	}
 
 
@@ -257,6 +306,35 @@ import RSVP from "../components/rsvp.astro"
 
 	}
 
+
+	#lightbox {
+		display: none;
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.88);
+		z-index: 1000;
+		align-items: center;
+		justify-content: center;
+		cursor: zoom-out;
+	}
+
+	#lightbox.open {
+		display: flex;
+	}
+
+	#lightbox img {
+		max-width: 90vw;
+		max-height: 90vh;
+		object-fit: contain;
+		border-radius: 8px;
+		border: 3px solid var(--light-blue-color);
+		cursor: default;
+		box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+	}
+
+	.image-style-1 {
+		cursor: zoom-in;
+	}
 
 	@media screen and (max-width: 600px) {
 		h2, h3 {
@@ -284,3 +362,24 @@ import RSVP from "../components/rsvp.astro"
 	}
 
 </style>
+
+<script>
+  const lightbox = document.getElementById('lightbox') as HTMLElement;
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+
+  document.querySelectorAll<HTMLImageElement>('.image-style-1').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+    });
+  });
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) lightbox.classList.remove('open');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox.classList.remove('open');
+  });
+</script>

@@ -158,71 +158,107 @@
 <style>
 
   .rsvp-container {
-      max-width: 360px;
-      height: auto;
-      margin: .75rem auto 2rem auto;
-      padding: 1.2rem;
-      border: 3px solid var(--light-blue-color);
-      border-radius: 8px;
+      max-width: 420px;
+      margin: 1.5rem auto 2rem auto;
+      padding: 2rem;
+      border: 1px solid rgba(52, 93, 135, 0.7);
+      border-radius: 12px;
       background-color: var(--dark-blue-color);
       color: var(--off-white-color);
       font-family: var(--font-primary);
+      box-shadow: 0 4px 32px rgba(0, 0, 0, 0.45);
   }
 
   #response-msg {
-      /* margin-top: 180px; */
       margin: 180px 0px 180px 0px;
       text-align: center;
       display: none;
       font-family: var(--font-primary);
       font-size: 1.4rem;
       font-weight: 700;
-
   }
 
   #plus1-section {
     display: none;
   }
-    
-  form { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 1rem;
-      height: auto;
+
+  form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+  }
+
+  h2 {
+      font-family: var(--font-header);
+      font-size: 1.4rem;
+      font-weight: 400;
+      text-align: center;
+      letter-spacing: 0.05rem;
+      margin: 0 0 0.5rem 0;
+      color: var(--off-white-color);
   }
 
   label {
       display: flex;
       flex-direction: column;
-      font-weight: bold;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+      color: var(--blue-green-color);
   }
 
-  input, select, textarea { 
-      padding: 0.5rem; 
-      margin-top: 0.75rem; 
-  }
-
-  select {
+  select, textarea {
+      padding: 0.65rem 0.75rem;
+      background-color: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(52, 93, 135, 0.5);
+      border-radius: 6px;
+      color: var(--off-white-color);
+      font-family: var(--font-primary);
+      font-size: 0.95rem;
+      outline: none;
       cursor: pointer;
-      overflow-wrap: break-word;
+      transition: border-color 0.2s, box-shadow 0.2s;
   }
 
-  option {
-    overflow-wrap: break-word;
+  select:focus, textarea:focus {
+      border-color: var(--light-blue-color);
+      box-shadow: 0 0 0 3px rgba(52, 93, 135, 0.3);
   }
 
-  h2 {
-      text-align: center;
-      margin-bottom: 0%;
+  select option {
+      background-color: var(--dark-blue-color);
+      color: var(--off-white-color);
+  }
+
+  textarea {
+      resize: vertical;
+      cursor: text;
   }
 
   button {
-      padding: 12px;
-      margin: 5px 10px auto 10px;
+      padding: 0.8rem;
+      margin-top: 0.25rem;
       background-color: var(--blue-green-color);
-      cursor: pointer;
+      color: var(--dark-blue-color);
+      border: none;
       border-radius: 8px;
-      font-weight: bold;
+      font-family: var(--font-primary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+  }
+
+  button:hover {
+      background-color: #9dd8bc;
+  }
+
+  button:active {
+      transform: scale(0.98);
   }
 
 </style>
