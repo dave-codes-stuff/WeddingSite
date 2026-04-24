@@ -164,7 +164,11 @@
   const notesField       = form.querySelector('textarea') as HTMLTextAreaElement;
 
   Array.from(guestSelection.options).forEach(option => {
-    option.textContent = option.value;
+    
+    // Avoid setting option.textContent to empty strings. 
+    if (option.value) { 
+      option.textContent = option.value;
+    }
   });
 
   guestSelection?.addEventListener('input', () => {
