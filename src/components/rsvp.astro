@@ -11,8 +11,8 @@
     <h2>Will you be attending?</h2>
 
     <label for="party">Choose party:
-      <select name="party" id="party-members" size="1" required>
-        <option value="--Select your party--" disabled selected />
+      <select name="party" id="party-members" required>
+        <option value="" disabled selected>--Select an option--</option>
         <option value="Adams, Mr. and Mrs. John"/>
         <option value="Adams, Mr. and Mrs. Thomas"/>
         <option value="Adams, Mr. Robin / +1"/>
@@ -80,23 +80,33 @@
       </select>
     </label>
 
-    <label for="attendance">
-      Will you attend?
-      <select name="attendance" id="attendance-selector" required>
-        <option value="" disabled selected>--Select an option--</option>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-      </select>
-    </label>
-    
-    <label for="plus1" id="plus1-section">
-      Will you be bringing a guest?
-      <select name="plus1" id="plus1-selector">
-        <option value="" disabled selected>--Select an option--</option>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-      </select>
-    </label>
+    <fieldset>
+      <legend>Will you attend?</legend>
+      <div class="radio-group">
+        <label class="radio-label">
+          <input type="radio" name="attendance" value="yes" required>
+          Yes
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="attendance" value="no" required>
+          No
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset id="plus1-section">
+      <legend>Will you be bringing a guest?</legend>
+      <div class="radio-group">
+        <label class="radio-label">
+          <input type="radio" name="plus1" value="yes">
+          Yes
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="plus1" value="no">
+          No
+        </label>
+      </div>
+    </fieldset>
 
     <label for="dietary_additional">
       Dietary Restrictions / Notes:
@@ -140,9 +150,8 @@
   const form             = document.getElementById('rsvp-form') as HTMLFormElement;
   const msg              = document.getElementById('response-msg');
   const guestSelection   = document.getElementById('party-members') as HTMLSelectElement;
-  const attendanceSelection = document.getElementById('attendance-selector') as HTMLSelectElement;
   const plus1section     = document.getElementById('plus1-section') as HTMLElement;
-  const plus1selector    = document.getElementById('plus1-selector') as HTMLSelectElement;
+  const plus1Radios      = form.querySelectorAll<HTMLInputElement>('input[name="plus1"]');
   const confirmation     = document.getElementById('confirmation') as HTMLElement;
   const confirmParty     = document.getElementById('confirm-party') as HTMLElement;
   const confirmAttending = document.getElementById('confirm-attending') as HTMLElement;
@@ -159,29 +168,35 @@
   });
 
   guestSelection?.addEventListener('input', () => {
-    attendanceSelection.value = '';
+    form.querySelectorAll<HTMLInputElement>('input[name="attendance"]').forEach(r => r.checked = false);
     plus1section.style.display = 'none';
-    plus1selector.value = '';
+    plus1Radios.forEach(r => { r.checked = false; r.required = false; });
   });
 
-  attendanceSelection?.addEventListener('input', () => {
-    if (attendanceSelection.value === 'yes' && guestSelection.value.includes('+1')) {
-      plus1section.style.display = 'contents';
-      plus1selector.required = true;
-    } else {
-      plus1section.style.display = 'none';
-      plus1selector.required = false;
-    }
+  form.querySelectorAll<HTMLInputElement>('input[name="attendance"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      const val = form.querySelector<HTMLInputElement>('input[name="attendance"]:checked')?.value;
+      if (val === 'yes' && guestSelection.value.includes('+1')) {
+        plus1section.style.display = 'flex';
+        plus1Radios.forEach(r => r.required = true);
+      } else {
+        plus1section.style.display = 'none';
+        plus1Radios.forEach(r => { r.checked = false; r.required = false; });
+      }
+    });
   });
 
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    confirmParty.textContent     = guestSelection.value;
-    confirmAttending.textContent = attendanceSelection.value === 'yes' ? 'Yes' : 'No';
+    const attendanceVal = form.querySelector<HTMLInputElement>('input[name="attendance"]:checked')?.value ?? '';
+    const plus1Val      = form.querySelector<HTMLInputElement>('input[name="plus1"]:checked')?.value ?? '';
 
-    if (attendanceSelection.value === 'yes' && guestSelection.value.includes('+1')) {
-      confirmPlus1.textContent        = plus1selector.value === 'yes' ? 'Yes' : 'No';
+    confirmParty.textContent     = guestSelection.value;
+    confirmAttending.textContent = attendanceVal === 'yes' ? 'Yes' : 'No';
+
+    if (attendanceVal === 'yes' && guestSelection.value.includes('+1')) {
+      confirmPlus1.textContent        = plus1Val === 'yes' ? 'Yes' : 'No';
       confirmPlus1Row.style.display   = 'flex';
     } else {
       confirmPlus1Row.style.display   = 'none';
@@ -237,6 +252,49 @@
 
   #plus1-section {
     display: none;
+  }
+
+  fieldset {
+      border: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+  }
+
+  legend {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+      color: var(--blue-green-color);
+      margin-bottom: 0.25rem;
+  }
+
+  .radio-group {
+      display: flex;
+      gap: 1.5rem;
+  }
+
+  .radio-label {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 400;
+      letter-spacing: normal;
+      text-transform: none;
+      color: var(--off-white-color);
+      cursor: pointer;
+  }
+
+  input[type="radio"] {
+      accent-color: var(--blue-green-color);
+      width: 1rem;
+      height: 1rem;
+      cursor: pointer;
   }
 
   form {
