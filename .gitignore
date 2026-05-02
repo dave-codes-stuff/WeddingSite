@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+__pycache__/
+make_pet_cards.py
+make_pet_cards_gimp.py
+petphotos/
