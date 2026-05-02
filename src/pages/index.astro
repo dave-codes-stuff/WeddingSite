@@ -140,6 +140,11 @@ import RSVP from "../components/rsvp.astro"
 			<img id="lightbox-img" src="" alt="" />
 		</div>
 
+		<footer>
+			<p class="footer-names">Sarah &amp; David</p>
+			<p class="footer-date">July 11, 2026</p>
+		</footer>
+
 	</body>
 </html>
 
@@ -416,6 +421,33 @@ import RSVP from "../components/rsvp.astro"
 			max-width: 95%;
 		}
 
+	}
+
+	footer {
+		background: linear-gradient(to bottom, var(--dark-blue-color), #162048);
+		color: white;
+		text-align: center;
+		padding: 2rem 1rem;
+		font-family: var(--font-header);
+		border-top: 3px solid var(--blue-green-color);
+		border-top-left-radius: 50% 20%;
+		border-top-right-radius: 50% 20%;
+	}
+
+	.footer-names {
+		font-size: 1.6rem;
+		letter-spacing: 0.2rem;
+		margin: 0;
+		padding: 0;
+	}
+
+	.footer-date {
+		font-size: 0.95rem;
+		letter-spacing: 0.15rem;
+		color: var(--blue-green-color);
+		margin: 0.4rem 0 0;
+		padding: 0;
+		font-family: var(--font-primary);
 	}
 
 </style>
