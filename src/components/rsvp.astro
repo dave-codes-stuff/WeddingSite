@@ -148,7 +148,10 @@
   </div>
 
   <p id="response-msg">Thanks!</p>
-  <p id="error-msg">Something went wrong — please try again, or email us at <a href="mailto:dadams29410@gmail.com">dadams29410@gmail.com</a>.</p>
+  <div id="error-msg">
+    <p>Something went wrong.<br>Please check your connection and try again, or email us at: <a href="mailto:rsvp-error@theadamsbegin.wedding">rsvp-error@theadamsbegin.wedding</a>.</p>
+    <button id="retry-btn" type="button">Try Again</button>
+  </div>
 
 </div>
 
@@ -170,6 +173,7 @@
   const editBtn          = document.getElementById('edit-btn') as HTMLButtonElement;
   const confirmBtn       = document.getElementById('confirm-btn') as HTMLButtonElement;
   const notesField       = form.querySelector('textarea') as HTMLTextAreaElement;
+  const retryBtn         = document.getElementById('retry-btn') as HTMLButtonElement;
 
   Array.from(guestSelection.options).forEach(option => {
     
@@ -230,6 +234,11 @@
     form.style.display         = 'flex';
   });
 
+  retryBtn?.addEventListener('click', () => {
+    if (errMsg) errMsg.style.display = 'none';
+    confirmation.style.display = 'flex';
+  });
+
   confirmBtn?.addEventListener('click', () => {
     const formData = new FormData(form);
     confirmBtn.disabled = true;
@@ -241,7 +250,7 @@
       })
       .catch(() => {
         confirmation.style.display = 'none';
-        if (errMsg) errMsg.style.display = 'block';
+        if (errMsg) errMsg.style.display = 'flex';
       })
       .finally(() => { confirmBtn.disabled = false; });
   });
@@ -275,6 +284,9 @@
       margin: 60px 0px;
       text-align: center;
       display: none;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
       font-family: var(--font-primary);
       font-size: 1rem;
       color: #f87171;
