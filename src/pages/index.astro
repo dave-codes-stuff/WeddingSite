@@ -95,25 +95,25 @@ import RSVP from "../components/rsvp.astro"
 			<div class="pet-grid">
 				<div class="pet-card">
 					<div class="pet-img-wrap">
-						<Image src={IMG_Marley}  alt="Marley, the Shih Tzu" />
+						<Image src={IMG_Marley}  alt="Marley — walk, nap, repeat (see union contract)" />
 					</div>
 					<span class="pet-name">Marley</span>
 				</div>
 				<div class="pet-card">
 					<div class="pet-img-wrap">
-						<Image src={IMG_Eleanor} alt="Eleanor, the cat" />
+						<Image src={IMG_Eleanor} alt="Eleanor — still processing the quadruped situation" />
 					</div>
 					<span class="pet-name">Eleanor</span>
 				</div>
 				<div class="pet-card">
 					<div class="pet-img-wrap">
-						<Image src={IMG_Teyla}   alt="Teyla, the kitten" />
+						<Image src={IMG_Teyla}   alt="Teyla — rambunctious by nature, unapologetic by choice" />
 					</div>
 					<span class="pet-name">Teyla</span>
 				</div>
 				<div class="pet-card">
 					<div class="pet-img-wrap">
-						<Image src={IMG_Donnie}  alt="Donnie, the Russian Tortoise" />
+						<Image src={IMG_Donnie}  alt="Donnie — very busy, extremely slow about it" />
 					</div>
 					<span class="pet-name">Donnie</span>
 				</div>
@@ -196,7 +196,11 @@ import RSVP from "../components/rsvp.astro"
 		</div>
 
 		<div id="lightbox">
-			<img id="lightbox-img" src="" alt="" />
+			<div id="lightbox-content">
+				<span id="lightbox-caption"></span>
+				<img id="lightbox-img" src="" alt="" />
+				<span id="lightbox-counter"></span>
+			</div>
 		</div>
 		<button id="lightbox-prev"  aria-label="Previous image">&#8592;</button>
 		<button id="lightbox-next"  aria-label="Next image">&#8594;</button>
@@ -659,9 +663,33 @@ import RSVP from "../components/rsvp.astro"
 		display: flex;
 	}
 
+	#lightbox-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+		max-width: 80vw;
+	}
+
+	#lightbox-caption {
+		color: var(--off-white-color);
+		font-family: var(--font-primary);
+		font-size: 0.9rem;
+		text-align: center;
+		width: 100%;
+	}
+
+	#lightbox-counter {
+		color: var(--blue-green-color);
+		font-family: var(--font-primary);
+		font-size: 0.9rem;
+		text-align: center;
+		width: 100%;
+	}
+
 	#lightbox img {
 		max-width: 80vw;
-		max-height: 90vh;
+		max-height: 80vh;
 		object-fit: contain;
 		border-radius: 8px;
 		border: 3px solid var(--light-blue-color);
@@ -803,11 +831,13 @@ import RSVP from "../components/rsvp.astro"
 </style>
 
 <script>
-  const lightbox    = document.getElementById('lightbox') as HTMLElement;
-  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
-  const prevBtn     = document.getElementById('lightbox-prev') as HTMLButtonElement;
-  const nextBtn     = document.getElementById('lightbox-next') as HTMLButtonElement;
-  const closeBtn    = document.getElementById('lightbox-close') as HTMLButtonElement;
+  const lightbox        = document.getElementById('lightbox') as HTMLElement;
+  const lightboxImg     = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lightboxCaption = document.getElementById('lightbox-caption') as HTMLElement;
+  const lightboxCounter = document.getElementById('lightbox-counter') as HTMLElement;
+  const prevBtn         = document.getElementById('lightbox-prev') as HTMLButtonElement;
+  const nextBtn         = document.getElementById('lightbox-next') as HTMLButtonElement;
+  const closeBtn        = document.getElementById('lightbox-close') as HTMLButtonElement;
 
   const images = Array.from(document.querySelectorAll<HTMLImageElement>('.image-style-1, .pet-img-wrap img'));
   let current = 0;
@@ -816,6 +846,8 @@ import RSVP from "../components/rsvp.astro"
     current = (index + images.length) % images.length;
     lightboxImg.src = images[current].src;
     lightboxImg.alt = images[current].alt;
+    lightboxCaption.textContent = images[current].alt;
+    lightboxCounter.textContent = `${current + 1} / ${images.length}`;
     lightbox.classList.add('open');
     document.body.classList.add('lightbox-open');
   }
@@ -832,7 +864,6 @@ import RSVP from "../components/rsvp.astro"
   closeBtn.addEventListener('click', (e) => { e.stopPropagation(); close(); });
 
   lightbox.addEventListener('click', (e) => {
-    if (e.target === lightboxImg) return;
     e.clientX < window.innerWidth / 2 ? open(current - 1) : open(current + 1);
   });
 
